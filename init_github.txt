@@ -1,0 +1,89 @@
+--------------INICIANDO-GIT-----------------------------------
+
+$ sudo apt-get install git
+
+$ git --version
+
+$ git config --global user.name "nombre de usuario"
+
+$ git config --global user.email "correo@electronico"
+
+$ git config --list
+
+----------------REPOSITORIOS--------------------------------------
+
+#inicializo la carpeta que quiero que sea mi repositorio
+
+$ git init 
+
+#revisar el contenido de la carpeta
+
+$ ls -lha
+
+#Archivos para darles seguimiento
+
+$ git status
+
+#===== ANADIR ARCHIVOS A GIT=========
+
+$ git add <nombre del archivo (tab)>
+
+$ git commit -m "pongo la razon por la cual subo a git"
+
+#para revisar todos los commits que he hecho 
+
+$ git log
+
+#===== Conectar con github =====
+
+#crear nuestra llave
+#si no quiero cambiar de contrasena dejo los campos vacios
+
+$ ssh-keygen -t rsa -b 4096 -C "Correo@electronico"
+
+#para saber donde estan las llaves
+
+$ cd ~/.ssh
+
+$ ls
+
+#verificacion si tengo el servidor ssh correindo
+
+$ cd ~/.ssh
+
+$ eval "$(ssh-agent -s)"
+
+#agregar la llave al servidor ssh, entregamos nuestra llave privada
+
+$ ssh-add ~/.ssh/id_rsa
+
+#Despuesta entregamos la llave publica en github
+
+#copiar la llave de manera segura
+
+$ sudo apt install xclip
+
+#copiar la llave publica a porta papeles
+
+$ xclip -selection clipboard < ~/.ssh/id_rsa.pub
+
+#una vez que lo tenga copiado me voy a git hub y agrego en ssh keygen
+
+
+#===== Crear el primer repositorio =====
+
+## cuando es un nuevo proyecto
+$ echo "# mi-primer-programa" README.md
+$ git init
+$ git add README.md
+$ git commit -m "primer commit"
+$ git branch -M main
+$ git remote add origin <remote_url>
+$ git push -u origin main
+
+## cuando ya se tiene un proyecto
+$ git remote add origin <remote_url>
+$ git branch -M main
+$ git push -u origin main
+
+#este es un documento de texto
