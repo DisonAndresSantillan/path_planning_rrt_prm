@@ -1,0 +1,65 @@
+<launch>
+
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaa Robot 1-->
+  <arg name="ns1"  default="r1"/>
+  
+  <arg name="r1_x_pos" default="0.0"/>
+  <arg name="r1_y_pos" default="0.0"/>
+  <arg name="r1_z_pos" default=" 0.0"/>
+  <arg name="r1_yaw"   default=" 0"/>
+
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaa Robot 2-->
+  <arg name="ns2"  default="r2"/>
+  
+  <arg name="r2_x_pos" default="2.11"/>
+  <arg name="r2_y_pos" default="2.44"/>
+  <arg name="r2_z_pos" default=" 0.0"/>
+  <arg name="r2_yaw"   default=" 0"/>
+
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaa Entorno -->
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find path_planning_rrt_prm)/worlds/mundo.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaa Grupo Robot 1 -->
+  <group ns = "$(arg ns1)">
+    <param name="robot_description" command="$(find xacro)/xacro  $(find path_planning_rrt_prm)/robots/urdf/turtlebot3_burger1.urdf.xacro" />
+    <param name="tf_prefix" value="r1_tf" />
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="use_gui" value="False"/>
+    </node>
+
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
+      <param name="publish_frequency" type="double" value="50.0" />
+      <param name="tf_prefix" value="r1_tf" />
+    </node>
+    
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-urdf -model $(arg ns1) -x $(arg r1_x_pos) -y $(arg r1_y_pos) -z $(arg r1_z_pos) -Y $(arg r1_yaw)  -param robot_description" respawn="false" output="screen" />
+
+  </group>
+
+  <!-- aaaaaaaaaaaaaaaaaaaaaaaaaaa Grupo Robot 2 -->
+  <group ns = "$(arg ns2)">
+    <param name="robot_description" command="$(find xacro)/xacro  $(find path_planning_rrt_prm)/robots/urdf/turtlebot3_burger2.urdf.xacro" />
+    <param name="tf_prefix" value="r2_tf" />
+   
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+     <param name="use_gui" value="False"/>
+    </node>
+
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
+      <param name="publish_frequency" type="double" value="50.0" />
+      <param name="tf_prefix" value="r2_tf" />
+    </node>
+
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-urdf -model $(arg ns2) -x $(arg r2_x_pos) -y $(arg r2_y_pos) -z $(arg r2_z_pos) -Y $(arg r2_yaw)  -param robot_description" respawn="false" output="screen" />
+
+  </group>
+
+</launch>
