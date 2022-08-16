@@ -23,7 +23,7 @@ do
 			echo "                                    EJECUTANDO ALGORITMO RRT                                         "
 			echo "*****************************************************************************************************"
 			echo " "
-			sigma=1.2
+			sigma=0.7
 			N=1000
 			robot=1;prueba=1
 			gnome-terminal -- sh -c "cd;cd catkin_ws/src/path_planning_rrt_prm/scripts;python3 Pruebas_RRT.py $N $robot $prueba $sigma; bash" &
