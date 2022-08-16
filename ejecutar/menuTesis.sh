@@ -79,13 +79,14 @@ p2() {
     echo "*****************************************************************************************************"
     echo " "
 	#Obstaculos random
+	echo "Los obstaculos arbitrarios son los restangulos que estan delineados"
 	ascii-image-converter LOGO_ENTORNO.png -d 40,20 -b
 	n1=$(($RANDOM % 7 + 1))
 	n2=$(($RANDOM % 7 + 1))
 	n3=$(($RANDOM % 7 + 1))
 	randObst=$(bc -l <<< "$n1*100+$n2*10+$n3") 
 	echo " "
-	echo "Los obstaculos que aparecerán son: el $n1, el $n2 y el $n3"
+	echo "Los obstaculos que arbitrarios son: el $n1, el $n2 y el $n3"
 	
 
     PS3="Seleccione un algoritmo: "
