@@ -66,6 +66,11 @@ $ sudo apt install xclip
 #copiar la llave publica a porta papeles
 
 $ xclip -selection clipboard < ~/.ssh/id_rsa.pub
+$ cd
+ 
+ Copiar y pegar en github
+$ cat ~/.ssh/id_rsa.pub
+
 
 #una vez que lo tenga copiado me voy a git hub y agrego en ssh keygen
 
