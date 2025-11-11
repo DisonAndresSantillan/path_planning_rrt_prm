@@ -90,3 +90,14 @@ $ git push -u origin main
 $ git remote add origin <remote_url>
 $ git branch -M main
 $ git push -u origin main
+
+## Eliminar una carpeta (carpeta /) o archivo (archivo)
+
+# Eliminar el entorno virtual del tracking de git
+git rm -r --cached carpeta/
+
+# Hacer commit de este cambio
+git commit -m "remove file from repository"
+
+# Hacer push
+git push origin main
